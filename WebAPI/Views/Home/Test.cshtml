@@ -1,0 +1,124 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.11.2.js"></script>
+    <title>Test</title>
+</head>
+<body>
+    apiurl:<input id="apiAddress" type="text" value="http://localhost:2310/" style="width:290px" />
+
+    <input id="Test_FindPwd" type="button" value="FindPwd" />
+    <input id="test_GetUserModel" type="button" value="GetUserModel" />
+    <input id="Login" type="button" value="Login" />
+    <input id="Regist" type="button" value="Regist" />
+    <input id="AddMoney" type="button" value="AddMoney" />
+    <div>
+        <h5>返回结果</h5>
+        result:<input id="result" type="text" value="" style="width:50px" />
+        <hr />
+        reason:<div id="returnMessage"></div>
+    </div>
+
+    <script type="text/javascript">
+
+        var apiUrl = $("#apiAddress").val();
+
+        $("#Test_FindPwd").click(function () {
+            var param = {};
+            param.phone = "13822222222";
+            param.qq = "308373816";
+
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                url: apiUrl + "/api/user/FindPwd",
+                data: param,
+                success: function (data) {
+                    $("#result").val(data.result);
+                    $("#returnMessage").html(data.reason);
+                }
+            });
+        });
+
+        $("#test_GetUserModel").click(function () {
+            var param = {};
+            param.phone = "13822222222";
+            //param.
+            //param.qq = "308373816";
+
+            $.ajax({
+                type: "get",
+                dataType: "json",
+                url: apiUrl + "/api/user/GetUserModel",
+                data: param,
+                success: function (data) {
+                    $("#result").val(data.result);
+                    $("#returnMessage").html(data.reason);
+                }
+            });
+        });
+
+        $("#Login").click(function () {
+            var param = {};
+            param.phone = "18764122900";
+            //param.qq = "308373816";
+            param.password = '1111';
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: apiUrl + "/api/user/Login",
+                data: param,
+                success: function (data) {
+                    $("#result").val(data.result);
+                    $("#returnMessage").html(data.reason);
+                }
+            });
+        });
+
+        $("#Regist").click(function () {
+            var param = {};
+            param.id = 1;
+            param.pwd = "123";
+            param.phone = "15264146391";
+            param.fatherphone = "15264146392";
+            param.zhifubao = "2320098003@qq.com";
+            param.deviceid = "123";
+            param.qq = "308373452";
+            $.ajax({
+                type: "post",
+                url: apiUrl + "/api/user/Regist",
+                dataType: "json",
+                data: param,
+                success: function (data) {
+                    $("#result").val(data.result);
+                    $("#returnMessage").html(data.reason);
+                }
+            });
+        });
+
+        $("#AddMoney").click(function () {
+            var param = {};
+            param.phone = "13822222222";
+            param.fatherphone = "13822222222";
+            //param.qq = "308373816";
+            param.password = '1111';
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: apiUrl + "/api/user/AddMoney",
+                data: param,
+                success: function (data) {
+                    $("#result").val(data.result);
+                    $("#returnMessage").html(data.reason);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@using WebAPI.Models
+@model UserModel
+
+<script src="~/Scripts/Home/HomeMain.js"></script>
+
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>欢迎进入登陆页面</h1>
+            </hgroup>
+        </div>
+    </section>
+
+    <section class="content-wrapper main-content clear-fix" style="text-align:center;width:500px">
+        <ol class="round">
+            <li>
+                <div class="input-group" style="width:300px">
+                    <span class="input-group-addon">账户</span>
+                    <input type="text" class="form-control" id="loginName" />
+                </div>
+              
+            </li>
+
+            <li>
+                <div class="input-group" style="width:300px">
+                    <span class="input-group-addon">密码</span>
+                    <input type="password" class="form-control" id="pwd" />
+                </div>
+            </li>
+            <li>
+                <div id="errMsg"></div>
+            </li>
+            <li class="api-name">
+                <input id="login" type="button" class="btn btn-default" value="登陆" style="width:100px;text-align:center" />
+            </li>
+
+        </ol>
+    </section>
+</div>

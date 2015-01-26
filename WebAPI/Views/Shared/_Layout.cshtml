@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+
+    @Styles.Render("~/Content/Bootstrape/bootstrap-theme.css")
+    @Styles.Render("~/Content/Bootstrape/bootstrap.css")
+    @Styles.Render("~/Content/Bootstrape/bootstrap-table.css")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    @Scripts.Render("~/Scripts/Bootstrape/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/Bootstrape/bootstrap-table.js")
+    @Scripts.Render("~/Scripts/Bootstrape/bootstrap-table-zh-CN.js")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <header>
+        <div class="content-wrapper" style="width:100%">
+            <div class="float-left">
+                <p class="site-title">
+            </div>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("登陆", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("主页面", "Main", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+
+</body>
+</html>

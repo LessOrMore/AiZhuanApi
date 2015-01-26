@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Main";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>用户信息</h1>
+            </hgroup>
+        </div>
+    </section>
+
+    <div id="custom-toolbar">
+        <div class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <input id="phone" class="form-control" type="email" placeholder="输入手机号">
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" onclick="search();">检索</button>
+
+            <div class="float-right" style="display:block;padding-left:20px">
+                <button type="button" class="btn btn-default" style="width:100px" onclick="setMoney();">设置流量币</button>
+            </div>
+        </div>
+        
+    </div>
+    <div class="panel info" style="padding:10px">
+        <table id="userTable" data-toggle="table" data-pagination="true" data-side-pagination="server" data-show-refresh="true"
+               data-toolbar="#custom-toolbar" data-url="/Home/GetUserDetails" data-click-to-select="true" data-single-select="true">
+            <thead>
+                <tr>
+                    <th data-checkbox="true">选择</th>
+                    <th data-field="id" data-align="left" data-sortable="true" data-visible="false">编号</th>
+                    <th data-field="phone" data-align="left" data-sortable="true">电话</th>
+                    <th data-field="fatherphone" data-align="left" data-sortable="true">推荐人手机号</th>
+                    <th data-field="zhifubao" data-align="left" data-sortable="true">支付宝账号</th>
+                    <th data-field="allmoney" data-align="left">自己赚流量币</th>
+                    <th data-field="nowmoney" data-align="left">自己赚未到流量币</th>
+                    <th data-field="allsonmoney" data-align="left">推荐赚流量币</th>
+                    <th data-field="nowsonmoney" data-align="left">推荐赚未到流量币</th>
+                    <th data-field="sonnums" data-align="left">推荐的人数</th>
+                    <th data-field="qq" data-align="left" data-sortable="true">QQ</th>
+                    <th data-field="isused" data-align="left" data-visible="false">账号是否可用</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="modal fade" id="myModel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">设置流量币</h4>
+                </div>
+                <form id="valForm">
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <span class="input-group-addon">减少自己赚未到流量币   </span>
+                            <input id="nowMoney" type="number" class="form-control required number" placeholder="自己赚未到流量币" />
+                            <span class="input-group-addon">请输入数字  </span>
+                        </div>
+                        <h1></h1>
+                        <div class="input-group">
+                            <span class="input-group-addon">减少推荐赚未到流量币</span>
+                            <input id="nowSonMoney" type="text" class="form-control required number" placeholder="推荐赚未到流量币" required />
+                            <span class="input-group-addon">请输入数字    </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="saveChange" type="button" class="btn btn-primary" onclick="saveChange();">设置更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="warningModel" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" style="color:red">警告</h4>
+                </div>
+                <div class="modal-body">
+                    <p>请选择一条数据在在操作&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/Home/HomeMain.js")
