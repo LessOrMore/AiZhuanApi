@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
     var code = getUrlParam("code");
 
-    if (code == "undefined" || code == "") {
+    if (code == "undefined" || code == "" || code=="null" || code==null) {
         $("#code").hide();
+        return;
     }
     $("#code").text("您的邀请码：" + code);
     $("#code").show();
