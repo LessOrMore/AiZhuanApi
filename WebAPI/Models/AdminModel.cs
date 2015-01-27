@@ -15,6 +15,7 @@ namespace WebAPI.Models
         public  string last_login_ip {get;set;}
         public string real_name{get;set;}
 
+        public string verifyCode { get; set; }
 
     }
 }

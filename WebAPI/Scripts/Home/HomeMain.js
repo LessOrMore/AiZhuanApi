@@ -3,9 +3,9 @@
     $("#login").click(function () {
         var LoginName = $("#loginName").val();
         var pwd = $("#pwd").val();
+        var vertifyCode = $("#txtCode").val();
 
-        if(LoginName == 'undefined' || LoginName == '')
-        {
+        if (LoginName == 'undefined' || LoginName == '') {
             $("#errMsg").html("用户名为空");
             return;
         }
@@ -14,16 +14,23 @@
             return;
         }
 
+        if (vertifyCode == 'undefined' || vertifyCode == '') {
+            $("#errMsg").html("验证码为空");
+            return;
+        }
+
         var param = {};
         param.user_account = LoginName;
         param.user_pwd = pwd;
-
+        param.verifyCode = vertifyCode;
         Login(param);
 
 
         $("#valForm").validate();
 
-    })
+    });
+
+    ToggleCode("Verify_codeImag", "VerifyCode");
 })
 
 function Login(param) {
@@ -111,4 +118,10 @@ function saveChange() {
             $("#saveChange").popover("show");
         }
     })
+}
+
+function ToggleCode(obj, codeurl) {
+    var url = "/Common/VertifyCode";
+    $("#txtCode").val("");
+    $("#" + obj).attr("src", url + "?time=" + Math.random());
 }

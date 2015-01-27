@@ -23,11 +23,21 @@ namespace WebAPI.Controllers
                 resultJson.Data = returnData;
                 return resultJson;
             }
+
+            string verifyCode = Session["SessionVerifyCode"].ToString();
+            if (verifyCode.ToLower() != adminInfo.verifyCode.ToLower())
+            {
+                var returnData = new { result = false, reason = "验证码不正确" };
+                resultJson.Data = returnData;
+                return resultJson;
+            }
+
+
             string reason = string.Empty;
             Models.AdminModel currentAdmin = WebAPI.Data.UserData.Instance.AdminLogin(adminInfo, ref reason);
             if (!string.IsNullOrEmpty(reason))
             {
-                var data = new { result = true, reason = reason };
+                var data = new { result = false, reason = reason };
                 resultJson.Data = data;
                 return resultJson;
 

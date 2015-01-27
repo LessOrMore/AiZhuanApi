@@ -29,6 +29,17 @@
                 </div>
             </li>
             <li>
+                <div class="input-group" style="width:300px;">
+                    <span class="input-group-addon">验证码</span>
+                    <input type="text" class="form-control" id="txtCode" />
+                    <span class="input-group-addon">
+                        <img  title="点击切换验证码" id="Verify_codeImag" style="cursor: pointer"
+                             onclick="ToggleCode(this.id, 'VerifyCode');return false;" alt="点击切换验证码" />
+                    </span>
+                    
+                </div>
+            </li>
+            <li>
                 <div id="errMsg"></div>
             </li>
             <li class="api-name">
