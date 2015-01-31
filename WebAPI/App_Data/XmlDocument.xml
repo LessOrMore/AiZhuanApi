@@ -396,6 +396,18 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:WebAPI.Controllers.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebAPI.Controllers.UserController.GetAccecssTag(System.String)">
+            <summary>
+            获取key
+            </summary>
+            <param name="myKey"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebAPI.Controllers.UserController.Regist(WebAPI.Models.UserModel)">
             <summary>
             注册
@@ -430,6 +442,13 @@
             查询用户
             </summary>
             <param name="phone">用户手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPI.Data.VilidateKey.CheckKey(WebAPI.Models.UserModel,System.String@)">
+            <summary>
+            校验
+            </summary>
+            <param name="reson"></param>
             <returns></returns>
         </member>
         <member name="M:WebAPI.Data.MD5Helper.GetMD5(System.String,System.Int32)">

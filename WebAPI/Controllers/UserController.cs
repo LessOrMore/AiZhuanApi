@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,8 +8,29 @@ using System.Web.Http;
 using WebAPI.Data;
 namespace WebAPI.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserController : ApiController
     {
+
+        /// <summary>
+        /// 获取key
+        /// </summary>
+        /// <param name="myKey"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public object GetAccecssTag(string myKey)
+        {
+            if (string.IsNullOrEmpty(myKey) || myKey != "aizhuan")
+            {
+                return new { result = false, reason = "参数无效" };
+            }
+
+            string key = ConfigurationManager.AppSettings["myKey"].ToString().Trim();
+            return new { result = true, key = key };
+
+        }
         /// <summary>
         /// 注册
         /// </summary>
@@ -22,6 +44,13 @@ namespace WebAPI.Controllers
             if (userInfo == null)
             {
                 reason = "参数为空";
+                var returnData = new { result = result, reason = reason };
+                return returnData;
+            }
+
+            //校验
+            if (!VilidateKey.CheckKey(userInfo, ref reason))
+            {
                 var returnData = new { result = result, reason = reason };
                 return returnData;
             }
@@ -46,8 +75,16 @@ namespace WebAPI.Controllers
                 var returnData = new { result = result, reason = reason };
                 return returnData;
             }
+
+            //校验
+            if (!VilidateKey.CheckKey(userInfo, ref reason))
+            {
+                var returnData = new { result = result, reason = reason };
+                return returnData;
+            }
+
+
             int type = -1;
-            
             result = UserData.Instance.Login(ref userInfo, ref reason,ref type);
             if (!result)
             {
@@ -69,6 +106,13 @@ namespace WebAPI.Controllers
                 return new { result=false,reason="参数解析错误" };
             }
             string reason = string.Empty;
+            //校验
+            if (!VilidateKey.CheckKey(userInfo, ref reason))
+            {
+                var returnData = new { result = false, reason = reason };
+                return returnData;
+            }
+
             bool result = UserData.Instance.AddMoney(userInfo, ref reason);
             return new { result = result, reason = reason};
         }
@@ -98,8 +142,8 @@ namespace WebAPI.Controllers
                 return new { result = false, reason = "qq号码不正确" };
             }
 
-
             string reason = string.Empty;
+            
             Random ran = new Random();
             var pwd = ran.Next(100000, 1000000).ToString();
             var md5pwd = MD5Helper.GetMD5(pwd,2);
@@ -147,5 +191,6 @@ namespace WebAPI.Controllers
             return new { phone = user.phone, fatherphone = user.fatherphone, allmoney = user.allmoney, nowmoney = user.nowmoney, allsonmoney = user.allsonmoney, nowsonmoney = user.nowsonmoney, sonnums =user.sonnums};
 
         }
+
     }
 }

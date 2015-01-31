@@ -29,5 +29,7 @@ namespace WebAPI.Models
 
         public double mymoney { get; set; }
         public string key {get;set;}
+
+        public string timespan { get; set; }
     }
 }

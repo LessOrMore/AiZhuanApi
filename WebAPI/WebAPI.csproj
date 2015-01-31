@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Data\VilidateKey.cs" />
     <Compile Include="Data\MailHelper.cs" />
     <Compile Include="Data\MD5Helper.cs" />
     <Compile Include="Data\SqlHelper.cs" />

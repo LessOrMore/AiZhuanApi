@@ -11,13 +11,14 @@
     <title>Test</title>
 </head>
 <body>
-    apiurl:<input id="apiAddress" type="text" value="http://localhost:2310/" style="width:290px" />
+    apiurl:<input id="apiAddress" type="text" value="http://localhost:2310" style="width:290px" />
 
     <input id="Test_FindPwd" type="button" value="FindPwd" />
     <input id="test_GetUserModel" type="button" value="GetUserModel" />
     <input id="Login" type="button" value="Login" />
     <input id="Regist" type="button" value="Regist" />
     <input id="AddMoney" type="button" value="AddMoney" />
+    <input id="GetAccecssTag" type="button" value="GetAccecssTag" />
     <div>
         <h5>返回结果</h5>
         result:<input id="result" type="text" value="" style="width:50px" />
@@ -26,6 +27,22 @@
     </div>
 
     <script type="text/javascript">
+
+        $("#GetAccecssTag").click(function () {
+            var apiUrl = $("#apiAddress").val();
+            var param = {};
+            param.myKey = "aizhuan";
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: apiUrl + "/api/user/GetAccecssTag",
+                data: param,
+                success: function (data) {
+                    $("#result").val(data.result);
+                    $("#returnMessage").html(data.reason);
+                }
+            });
+        });
 
         var apiUrl = $("#apiAddress").val();
 
@@ -119,6 +136,9 @@
                 }
             });
         });
+
+       
+
     </script>
 </body>
 </html>
