@@ -105,11 +105,11 @@ namespace WebAPI.Data
         /// <param name="userInfo"></param>
         /// <param name="reason"></param>
         /// <returns></returns>
-        public bool Login(Models.UserModel userInfo, ref string reason,ref int type)
+        public bool Login(ref Models.UserModel userInfo, ref string reason,ref int type)
         {
             try
             {
-                string sql = "select phone,pwd,deviceid from userinfo where phone=@phone" ;
+                string sql = "select id,phone,pwd,deviceid from userinfo where phone=@phone" ;
                 SqlParameter[] param = new SqlParameter[] {
                     new SqlParameter("@phone",userInfo.phone)
                 };
@@ -135,6 +135,8 @@ namespace WebAPI.Data
                     reason = "用户数据异常，请联系客服";
                     return false;
                 }
+
+                userInfo.id = Convert.ToInt32(ds.Tables[0].Rows[0]["id"].ToString());
 
                 string deviceId  = string.Empty;
                 if(ds.Tables[0].Rows[0]["deviceid"]!=null)

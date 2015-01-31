@@ -681,7 +681,7 @@
             <param name="reason"></param>
             <returns></returns>
         </member>
-        <member name="M:WebAPI.Data.UserData.Login(WebAPI.Models.UserModel,System.String@,System.Int32@)">
+        <member name="M:WebAPI.Data.UserData.Login(WebAPI.Models.UserModel@,System.String@,System.Int32@)">
             <summary>
             用户登陆
             </summary>

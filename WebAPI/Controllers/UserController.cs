@@ -47,12 +47,13 @@ namespace WebAPI.Controllers
                 return returnData;
             }
             int type = -1;
-            result = UserData.Instance.Login(userInfo, ref reason,ref type);
+            
+            result = UserData.Instance.Login(ref userInfo, ref reason,ref type);
             if (!result)
             {
                 return new { result = result, reason = reason };
             }
-            return new { result = result, reason = reason, type = type };
+            return new { result = result, reason = reason, type = type, userid = userInfo.id };
         }
 
         /// <summary>
