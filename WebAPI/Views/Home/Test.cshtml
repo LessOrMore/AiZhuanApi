@@ -66,9 +66,9 @@
 
         $("#Login").click(function () {
             var param = {};
-            param.phone = "13903767814";
+            param.phone = "15264146313";
             //param.qq = "308373816";
-            param.password = '1111';
+            param.pwd = 'd1ceb8907ca026bb7d653f1eeeef1043';
             $.ajax({
                 type: "post",
                 dataType: "json",
@@ -76,7 +76,7 @@
                 data: param,
                 success: function (data) {
                     $("#result").val(data.result);
-                    $("#returnMessage").html(data.reason);
+                    $("#returnMessage").html(data);
                 }
             });
         });
