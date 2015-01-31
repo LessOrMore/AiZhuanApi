@@ -130,6 +130,12 @@ namespace WebAPI.Data
                     return false;
                 }
 
+                if (userInfo.allmoney > 20)
+                {
+                    reason = "用户数据异常，请联系客服";
+                    return false;
+                }
+
                 string deviceId  = string.Empty;
                 if(ds.Tables[0].Rows[0]["deviceid"]!=null)
                 { deviceId = ds.Tables[0].Rows[0]["deviceid"].ToString(); }
@@ -428,11 +434,11 @@ namespace WebAPI.Data
             {
                 if (values.Key == "startRow")
                 {
-                    pageWhere += string.Format(" and RowNumber>={0}", values.Value);
+                    pageWhere += string.Format(" and RowNumber >{0}", values.Value);
                 }
                 else if(values.Key=="endRow")
                 {
-                    pageWhere += string.Format(" and RowNumber<={0}", values.Value);
+                    pageWhere += string.Format(" and RowNumber <= {0}", values.Value);
 
                 }
                 else

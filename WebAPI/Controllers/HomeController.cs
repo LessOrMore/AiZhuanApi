@@ -117,9 +117,9 @@ namespace WebAPI.Controllers
             string limit = Request.Params["limit"];
             if (!string.IsNullOrEmpty(offset) && !string.IsNullOrEmpty(limit))
             {
-                int startRow = Convert.ToInt32(offset) * Convert.ToInt32(limit) + 1;
+                int startRow = Convert.ToInt32(offset);
                 param.Add("startRow", startRow.ToString());
-                int endRow = (Convert.ToInt32(offset) + 1) * Convert.ToInt32(limit);
+                int endRow = Convert.ToInt32(offset)+ Convert.ToInt32(limit);
                 param.Add("endRow", endRow.ToString());
             }
             return param;
