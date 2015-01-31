@@ -32,10 +32,10 @@
             var apiUrl = $("#apiAddress").val();
             var param = {};
             param.myKey = "aizhuan";
+
             $.ajax({
                 type: "post",
-                dataType: "json",
-                url: apiUrl + "/api/user/GetAccecssTag",
+                url: apiUrl + "/api/user/GetAccessTag",
                 data: param,
                 success: function (data) {
                     $("#result").val(data.result);

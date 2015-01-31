@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -13,22 +14,35 @@ namespace WebAPI.Controllers
     /// </summary>
     public class UserController : ApiController
     {
-
         /// <summary>
         /// 获取key
         /// </summary>
-        /// <param name="myKey"></param>
+        /// <param name="postJson"></param>
         /// <returns></returns>
         [HttpPost]
-        public object GetAccecssTag(string myKey)
+        public object GetAccessTag([FromBody]JObject postJson)
         {
-            if (string.IsNullOrEmpty(myKey) || myKey != "aizhuan")
+            if (postJson == null) { return new { result = false, reason = "参数无效" }; }
+
+            JToken token;
+            string myKey=string.Empty;
+            if (postJson.TryGetValue("myKey", out token))
+            {
+                myKey = token.ToString();
+            }
+            else
+            {
+                return new { result = false, reason = "参数无效" };
+            }
+
+            if (string.IsNullOrEmpty(myKey.ToString()) || myKey.ToString() != "aizhuan")
             {
                 return new { result = false, reason = "参数无效" };
             }
 
             string key = ConfigurationManager.AppSettings["myKey"].ToString().Trim();
-            return new { result = true, key = key };
+            var returnData = new { result = true, key = key };
+            return returnData;
 
         }
         /// <summary>

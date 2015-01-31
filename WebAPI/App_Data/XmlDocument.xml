@@ -401,11 +401,11 @@
             
             </summary>
         </member>
-        <member name="M:WebAPI.Controllers.UserController.GetAccecssTag(System.String)">
+        <member name="M:WebAPI.Controllers.UserController.GetAccessTag(Newtonsoft.Json.Linq.JObject)">
             <summary>
             获取key
             </summary>
-            <param name="myKey"></param>
+            <param name="postJson"></param>
             <returns></returns>
         </member>
         <member name="M:WebAPI.Controllers.UserController.Regist(WebAPI.Models.UserModel)">
