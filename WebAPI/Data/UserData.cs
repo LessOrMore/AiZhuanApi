@@ -228,13 +228,6 @@ namespace WebAPI.Data
                 Models.UserModel currentModel = this.GetUser(userInfo.phone, ref reason);
                 if (!string.IsNullOrEmpty(reason)) { return false;}
 
-                string myKey = MD5Helper.GetMD5(MD5Helper.GetMD5(currentModel.pwd + "ai1zhuan2", 2),2);
-                if (myKey != userInfo.key)
-                {
-                    reason = "数据验证失败";
-                    return false;
-                }
-
                 if (string.IsNullOrEmpty(userInfo.phone)) { reason = "手机号为空"; return false; }
                 if (userInfo.id == 0) { userInfo.id = -1; }
                 if (string.IsNullOrEmpty(userInfo.fatherphone)) { userInfo.fatherphone = ""; }

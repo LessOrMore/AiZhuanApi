@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         public object GetAccessTag([FromBody]JObject postJson)
         {
-            if (postJson == null) { return new { result = false, reason = "参数无效" }; }
+            if (postJson == null) { return new { result = false, reason = "postJson为null" }; }
 
             JToken token;
             string myKey=string.Empty;
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             }
             else
             {
-                return new { result = false, reason = "参数无效" };
+                return new { result = false, reason = "Json获取值为null" };
             }
 
             if (string.IsNullOrEmpty(myKey.ToString()) || myKey.ToString() != "aizhuan")

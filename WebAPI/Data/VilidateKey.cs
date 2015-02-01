@@ -20,9 +20,11 @@ namespace WebAPI.Data
                 string myKey = ConfigurationManager.AppSettings["myKey"].ToString().Trim();
 
                 string keyStr = myKey + user.timespan + "ai1zhuan2";
-                if (MD5Helper.GetMD5(keyStr, 2) != user.key)
+                string CreateKey = MD5Helper.GetMD5(keyStr, 2);
+                if (CreateKey != user.key)
                 {
-                    reason = "校验失败";
+                    //reason = string.Format("校验失败:Createkey:{0},{1};SendKey:{2}",keyStr,CreateKey,user.key);
+                    reason = string.Format("校验失败 ");
                     return false;
                 }
 
