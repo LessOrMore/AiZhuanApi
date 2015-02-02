@@ -64,7 +64,7 @@ namespace WebAPI.Data
                 SqlParameter[] param = new SqlParameter[] { 
                     new SqlParameter("@id",SqlDbType.Int,4),
                     new SqlParameter("@phone",SqlDbType.VarChar,11),
-                    new SqlParameter("@pwd",SqlDbType.VarChar,30),
+                    new SqlParameter("@pwd",SqlDbType.VarChar,50),
                     new SqlParameter("@fatherphone",SqlDbType.VarChar,11),
                     new SqlParameter("@zhifubao",SqlDbType.VarChar,120),
                     new SqlParameter("@qq",SqlDbType.VarChar,15),
